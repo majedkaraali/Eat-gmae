@@ -10,7 +10,7 @@ def install(package):
 
 print("-Code By Majed")
 
-def yükleniyor(metin,tekrar):
+def reload(metin,tekrar):
     for i in range(tekrar):
         print(metin,"/ ",end="\r")
         time.sleep(0.1)
@@ -21,7 +21,7 @@ def yükleniyor(metin,tekrar):
         print(metin,"| ",end="\r")
         time.sleep(0.1) 
         
-yükleniyor("-lütfen bekleyenniz",4)
+reload("-Please wait",4)
 
 time.sleep(1)
 print("Welcome to the game / Oyuna hoş geldiniz")
@@ -90,11 +90,18 @@ root.iconbitmap("jpg/favicon.ico")
 score=0
 hit=False
 dead=False
-health=100
+health=95
 dil="EN"
 in_how_frame=False
 first_open=True
 qut=False
+bandge_part=0
+bleed=False
+star_bleed=False
+virus_count=0
+food_count=0
+
+Timer=0.8
 ###################
 
 
@@ -147,7 +154,7 @@ img27=ImageTk.PhotoImage(Image.open("jpg/virus5.jpg"))  #   -4 xp
 
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 def play():
-    threading.Thread(target=start_s).start() # buradan oyun basliyor
+    threading.Thread(target=start_s).start() # Game Start 
     homescrene.destroy()       
     star_new()
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
@@ -424,24 +431,53 @@ img14,img15,img16,img17]
 
 viruslist=[img19,img23,img24,img25,img26,img27,img21]
 
-
 ############################################################################ Game logic
-def dmage():
-    global health,h_bar,dead
-    h_bar.destroy()
-    health-=45
-    h_bar=Label(static,bg="green",width=health,height=1,text="Health")
-    h_bar.place(x=10,y=60)
 
+def set_timer(rand):
+    global Timer
+    if score>=200:
+        Timer=0.7
+    if score>=500:
+        Timer=0.6
+    if score>=900:
+        Timer=0.5
+    if score>=1300:
+        Timer=0.4
+
+    
+def dmage():  
+    global health,h_bar,dead,start_bleed,bleed
+    star_bleed=True
+    
+    if bleed==True:
+        star_bleed=False
+    
+    if (star_bleed==True):
+        bleed=True
+        print("bledding")
+        while (health != 0):
+            if bleed==False:
+                break
+            h_bar.destroy()
+            health-=1
+            h_bar=Label(static,bg="green",width=health,height=1,text="Health")
+            if health<50:
+                h_bar.config(bg="gold")
+            if health<25:
+                h_bar.config(bg="red")
+            h_bar.place(x=10,y=60)
+            time.sleep(0.2)
+   
+        
+    
+        
     if dil=="TR":
         h_bar.config(text="Sağlık")
+        
     elif dil=="AR":
          h_bar.config(text="صحة")
          
-    if health<50:
-        h_bar.config(bg="gold")
-    if health<25:
-        h_bar.config(bg="red")
+   
     if health <1:
         dead=True
         static.destroy()
@@ -464,62 +500,129 @@ def dmage():
 def command_passer():
     pass
 
+
+
+def bandge(coll):
+    
+    global static,bandge_lab,bandge_part,bleed
+    if  coll=="Virus":
+        bandge_lab.destroy()
+        if bandge_part>15:
+            bandge_part-=20
+    if coll=="Food":
+        bandge_lab.destroy()
+        bandge_part+=20
+    if coll=="Start":
+        bandge_part+=15
+
+    if bandge_part>=95:
+        bandge_part=0
+        bleed=False
+
+    bandge_lab=Label(static,text="Bandge parts",width=bandge_part,height=1,bg='Darkgreen')
+    bandge_lab.place(x=10,y=37)
+   
+
+
 def add_score():
-    global score,hit
+    global score,hit,health
     if rmg in viruslist:
+        if (bleed):
+            bandge("Virus")
         threading.Thread(target=Virus).start()
-        if rmg==img19:
-            score-=3
-        elif rmg==img21:
-            score-=3
-        elif rmg==img23:
-            score-=7
-        elif rmg==img24:
-            score-=7
-        elif rmg==img25:
-            score-=2
-        elif rmg==img26:
-            score-=5
-        elif rmg==img27:
-            score-=4
-        dmage()
+        threading.Thread(target=dmage).start()
+       
     elif rmg in foodlist:
         threading.Thread(target=eat_sound).start()
         if rmg ==img:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=30
         elif rmg==img1:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=50
         elif rmg==img2:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=60
         elif rmg==img3:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=50
         elif rmg==img4:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=40
         elif rmg==img5:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=20
         elif rmg==img6:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=50
         elif rmg==img7:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=80
         elif rmg==img8:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=50
         elif rmg==img9:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=60
         elif rmg==img10:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=90
         elif rmg==img11:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=30
         elif rmg==img12:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=50
         elif rmg==img13:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=40
         elif rmg==img14:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=80
         elif rmg==img15:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=30
         elif rmg==img16:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=60
         elif rmg==img17:
+            if (bleed):
+                health+=10
+                bandge("Food")
             score+=80
         
     hit=True
@@ -598,6 +701,7 @@ def star_new():
     h_bar.place(x=10,y=60)
     mainmenu=Button(static,text="Menu",command=lambda:threading.Thread(target=main_menu).start(),bg="#458B74",font=("BLOD",10))
     mainmenu.place(x=635,y=8)
+    bandge("Start")
     if dil=="TR":
         test.config(text="Başla")
         scc.config(text="Puan:"+str(score))
@@ -642,62 +746,87 @@ def counddown():
 
     
 def random_chi():
-    global x ,rmg
+    global x ,rmg,virus_count,food_count
+    
     rmg=random.choice(liste)
     x=random.randint(1,12)
+    
+    if rmg in foodlist:
+        print('food')
+        food_count+=1
+
+    elif rmg in viruslist:
+        print('virus')
+        virus_count+=1
+    
+   # print("Virus",virus_count,"Food",food_count)
+
+    if food_count>=4:
+      #  print("exuceted")
+        rmg=random.choice(viruslist)
+        food_count=0
+
+    if virus_count>=2:
+       # print("exuceted")
+        rmg=random.choice(foodlist)
+        food_count=0
+        virus_count=0
+
     if qut!=True:
         open_chi(x)
 
 def open_chi(x):
+
     global hit
     hit=False
+    print(Timer)
     if x==1:
         pos1.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos1.config(bg="#4A4A4A",image=imga,command=command_passer)
     elif  x==2 and qut==False:
         pos2.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos2.config(bg="#4A4A4A",image=imga,command=command_passer)
     elif  x==3 and qut==False:
         pos3.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos3.config(bg="#4A4A4A",image=imga,command=command_passer)
     elif  x==4 and qut==False:
         pos4.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos4.config(bg="#4A4A4A",image=imga,command=command_passer)
     elif  x==5 and qut==False:
         pos5.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos5.config(bg="#4A4A4A",image=imga,command=command_passer)
     elif  x==6 and qut==False:
         pos6.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos6.config(bg="#4A4A4A",image=imga,command=command_passer)     
     elif  x==7 and qut==False:
         pos7.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos7.config(bg="#4A4A4A",image=imga,command=command_passer)
     elif  x==8 and qut==False:
         pos8.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos8.config(bg="#4A4A4A",image=imga,command=command_passer)
     elif  x==9 and qut==False:
         pos9.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos9.config(bg="#4A4A4A",image=imga,command=command_passer)
     elif  x==10 and qut==False:
         pos10.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos10.config(bg="#4A4A4A",image=imga,command=command_passer)
     elif  x==11 and qut==False:
         pos11.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos11.config(bg="#4A4A4A",image=imga,command=command_passer)
     elif  x==12 and qut==False:
         pos12.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
-        time.sleep(1.3)
+        time.sleep(Timer)
         pos12.config(bg="#4A4A4A",image=imga,command=command_passer)
 
 
