@@ -5,4 +5,4 @@ for i in fl:
    # print(i)
     sc_list.append(i)
 max_sc=max(sc_list)
-#print(max_sc)
+print(sc_list)

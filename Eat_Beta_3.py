@@ -117,7 +117,7 @@ tr=ImageTk.PhotoImage(Image.open("jpg/TR.jpg"))
 ar=ImageTk.PhotoImage(Image.open("jpg/AR.jpg"))
 
 hp=ImageTk.PhotoImage(Image.open("jpg/hp.jpg"))
-imga=ImageTk.PhotoImage(Image.open("jpg/noclip.jpg"))
+imga=ImageTk.PhotoImage(Image.open("jpg/Card.jpg"))
 img=ImageTk.PhotoImage(Image.open("jpg/food.jpg"))      #   3 xp
 img1=ImageTk.PhotoImage(Image.open("jpg/food1.jpg"))    #   5 xp
 img2=ImageTk.PhotoImage(Image.open("jpg/food2.jpg"))    #   6 xp  
@@ -433,16 +433,6 @@ viruslist=[img19,img23,img24,img25,img26,img27,img21]
 
 ############################################################################ Game logic
 
-def set_timer(rand):
-    global Timer
-    if score>=200:
-        Timer=0.7
-    if score>=500:
-        Timer=0.6
-    if score>=900:
-        Timer=0.5
-    if score>=1300:
-        Timer=0.4
 
     
 def dmage():  
@@ -505,6 +495,7 @@ def command_passer():
 def bandge(coll):
     
     global static,bandge_lab,bandge_part,bleed
+
     if  coll=="Virus":
         bandge_lab.destroy()
         if bandge_part>15:
@@ -519,7 +510,7 @@ def bandge(coll):
         bandge_part=0
         bleed=False
 
-    bandge_lab=Label(static,text="Bandge parts",width=bandge_part,height=1,bg='Darkgreen')
+    bandge_lab=Label(static,text="Vitamins",width=bandge_part,height=1,bg='#9ACD32')
     bandge_lab.place(x=10,y=37)
    
 
@@ -627,79 +618,79 @@ def add_score():
         
     hit=True
     if dead !=True: 
-        scc=Label(static,text="Score:"+str(score),bg="#A9A9A9",font=("BLOD",12))
+        scc=Label(static,text="Score:"+str(score),fg="white",bg="#202529",font=("BLOD",12),borderwidth=0)
         scc.place(x=10,y=5)
     if dil=="TR":
         scc.config(text="Puan:"+str(score))
     elif dil=="AR":
         scc.config(text="نقاط:"+str(score))   
     if x==1:
-        pos1.config(bg="#4A4A4A",command=command_passer)
+        pos1.config(bg="#202529",command=command_passer)
     elif x==2:
-        pos2.config(bg="#4A4A4A",command=command_passer)
+        pos2.config(bg="#202529",command=command_passer)
     elif x==3:
-        pos3.config(bg="#4A4A4A",command=command_passer)
+        pos3.config(bg="#202529",command=command_passer)
     elif x==4:
-        pos4.config(bg="#4A4A4A",command=command_passer)
+        pos4.config(bg="#202529",command=command_passer)
     elif x==5:
-        pos5.config(bg="#4A4A4A",command=command_passer)
+        pos5.config(bg="#202529",command=command_passer)
     elif x==6:
-        pos6.config(bg="#4A4A4A",command=command_passer)     
+        pos6.config(bg="#202529",command=command_passer)     
     elif x==7:
-        pos7.config(bg="#4A4A4A",command=command_passer)
+        pos7.config(bg="#202529",command=command_passer)
     elif x==8:
-        pos8.config(bg="#4A4A4A",command=command_passer)
+        pos8.config(bg="#202529",command=command_passer)
     elif x==9:
-        pos9.config(bg="#4A4A4A",command=command_passer)
+        pos9.config(bg="#202529",command=command_passer)
     elif x==10:
-        pos10.config(bg="#4A4A4A",command=command_passer)
+        pos10.config(bg="#202529",command=command_passer)
     elif x==11:
-        pos11.config(bg="#4A4A4A",command=command_passer)
+        pos11.config(bg="#202529",command=command_passer)
     elif x==12:
-        pos12.config(bg="#4A4A4A",command=command_passer)
+        pos12.config(bg="#202529",command=command_passer)
     
     
 def star_new():
     global pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,pos10,pos11,pos12,test,scc,h_bar,static,postions,mainmenu,qut
     qut=False
-    postions=LabelFrame(root,width=690,height=510,bg="#A9A9A9")
+    postions=LabelFrame(root,width=690,height=510,bg="#202529",borderwidth=0)
     postions.pack()
-    static=LabelFrame(root,width=690,height=100,bg="#A9A9A9")
+    static=LabelFrame(root,width=690,height=100,bg="#202529",borderwidth=0)
     static.pack()
-    pos1=Button(postions,bg="#4A4A4A",image=imga)
+    pos1=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos1.place(x=25,y=20)
-    pos2=Button(postions,bg="#4A4A4A",image=imga)
+    pos2=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos2.place(x=185,y=20)
-    pos3=Button(postions,bg="#4A4A4A",image=imga)
+    pos3=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos3.place(x=345,y=20)
-    pos4=Button(postions,bg="#4A4A4A",image=imga)
+    pos4=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos4.place(x=505,y=20)
 
-    pos5=Button(postions,bg="#4A4A4A",image=imga)
+    pos5=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos5.place(x=25,y=180)
-    pos6=Button(postions,bg="#4A4A4A",image=imga)
+    pos6=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos6.place(x=185,y=180)
-    pos7=Button(postions,bg="#4A4A4A",image=imga)
+    pos7=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos7.place(x=345,y=180)
-    pos8=Button(postions,bg="#4A4A4A",image=imga)
+    pos8=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos8.place(x=505,y=180)
 
-    pos9=Button(postions,bg="#4A4A4A",image=imga)
+    pos9=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos9.place(x=25,y=340)
-    pos10=Button(postions,bg="#4A4A4A",image=imga)
+    pos10=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos10.place(x=185,y=340)
-    pos11=Button(postions,bg="#4A4A4A",image=imga)
+    pos11=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos11.place(x=345,y=340)
-    pos12=Button(postions,bg="#4A4A4A",image=imga)
+    pos12=Button(postions,bg="#202529",image=imga,borderwidth=0)
     pos12.place(x=505,y=340)
 
-    test=Button(static,text="Start",command=lambda:threading.Thread(target=counddown).start(),bg="#458B74",font=("BLOD",12))
+    test=Button(static,text="Start",fg="white",command=lambda:threading.Thread(target=counddown).start(),bg="#202529",font=("BLOD",14),borderwidth=0)
     test.place(x=315,y=5)
-    scc=Label(static,text="Score:"+str(score),bg="#A9A9A9",font=("BLOD",12))
+    scc=Label(static,text="Score:"+str(score),fg="white",bg="#202529",font=("BLOD",12),borderwidth=0)
     scc.place(x=10,y=5)
     h_bar=Label(static,bg="green",width=health,height=1,text="Health")
     h_bar.place(x=10,y=60)
-    mainmenu=Button(static,text="Menu",command=lambda:threading.Thread(target=main_menu).start(),bg="#458B74",font=("BLOD",10))
+    mainmenu=Button(static,text="Menu",command=lambda:threading.Thread(target=main_menu).start(),bg="#202529",fg="white",font=("BLOD",12),borderwidth=0)
     mainmenu.place(x=635,y=8)
     bandge("Start")
     if dil=="TR":
@@ -722,22 +713,22 @@ def counddown():
     threading.Thread(target=Count_down).start()
     test.destroy()
 
-    tre=Label(static,text=" 3",fg="black",bg="#A9A9A9",font=("BLOD",16))
+    tre=Label(static,text=" 3",fg="White",bg="#202529",font=("BLOD",16))
     tre.place(x=326,y=8)
     time.sleep(1)
     tre.destroy()
 
-    to=Label(static,text=" 2",fg="black",bg="#A9A9A9",font=("BLOD",16))
+    to=Label(static,text=" 2",fg="white",bg="#202529",font=("BLOD",16))
     to.place(x=326,y=8)
     time.sleep(1)
     to.destroy()
 
-    one=Label(static,text=" 1",fg="black",bg="#A9A9A9",font=("BLOD",16))
+    one=Label(static,text=" 1",fg="white",bg="#202529",font=("BLOD",16))
     one.place(x=326,y=8)
     time.sleep(1)
     one.destroy()
 
-    go=Label(static,text="Go",fg="green",bg="#A9A9A9",font=("BLOD",16))
+    go=Label(static,text="Go",fg="green",bg="#202529",font=("BLOD",16))
     go.place(x=326,y=8)
     time.sleep(1)
     go.destroy()
@@ -747,7 +738,7 @@ def counddown():
     
 def random_chi():
     global x ,rmg,virus_count,food_count
-    
+
     rmg=random.choice(liste)
     x=random.randint(1,12)
     
@@ -781,53 +772,53 @@ def open_chi(x):
     hit=False
     print(Timer)
     if x==1:
-        pos1.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos1.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos1.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos1.config(bg="#202529",image=imga,command=command_passer)
     elif  x==2 and qut==False:
-        pos2.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos2.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos2.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos2.config(bg="#202529",image=imga,command=command_passer)
     elif  x==3 and qut==False:
-        pos3.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos3.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos3.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos3.config(bg="#202529",image=imga,command=command_passer)
     elif  x==4 and qut==False:
-        pos4.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos4.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos4.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos4.config(bg="#202529",image=imga,command=command_passer)
     elif  x==5 and qut==False:
-        pos5.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos5.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos5.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos5.config(bg="#202529",image=imga,command=command_passer)
     elif  x==6 and qut==False:
-        pos6.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos6.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos6.config(bg="#4A4A4A",image=imga,command=command_passer)     
+        pos6.config(bg="#202529",image=imga,command=command_passer)     
     elif  x==7 and qut==False:
-        pos7.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos7.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos7.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos7.config(bg="#202529",image=imga,command=command_passer)
     elif  x==8 and qut==False:
-        pos8.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos8.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos8.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos8.config(bg="#202529",image=imga,command=command_passer)
     elif  x==9 and qut==False:
-        pos9.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos9.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos9.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos9.config(bg="#202529",image=imga,command=command_passer)
     elif  x==10 and qut==False:
-        pos10.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos10.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos10.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos10.config(bg="#202529",image=imga,command=command_passer)
     elif  x==11 and qut==False:
-        pos11.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos11.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos11.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos11.config(bg="#202529",image=imga,command=command_passer)
     elif  x==12 and qut==False:
-        pos12.config(bg="#4A4A4A",state="normal",command=lambda:add_score(),image=rmg)
+        pos12.config(bg="#202529",state="normal",command=lambda:add_score(),image=rmg)
         time.sleep(Timer)
-        pos12.config(bg="#4A4A4A",image=imga,command=command_passer)
+        pos12.config(bg="#202529",image=imga,command=command_passer)
 
 
 
