@@ -750,15 +750,12 @@ def random_chi():
         print('virus')
         virus_count+=1
     
-   # print("Virus",virus_count,"Food",food_count)
 
     if food_count>=4:
-      #  print("exuceted")
         rmg=random.choice(viruslist)
         food_count=0
 
     if virus_count>=2:
-       # print("exuceted")
         rmg=random.choice(foodlist)
         food_count=0
         virus_count=0
