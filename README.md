@@ -1,5 +1,5 @@
 #Eat-gmae
-
+Game maded in python 
 
 ![home](https://github.com/majedkaraali/Eat-gmae/assets/47135751/b89ebede-f875-41b0-868f-4bc94d4f0fa9)
 
