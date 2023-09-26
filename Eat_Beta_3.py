@@ -12,7 +12,7 @@ def install(package):
 
 
 
-print("-Code By Majed")
+#print("-Code By Majed")
 
 def reload(metin,tekrar):
     for i in range(tekrar):
